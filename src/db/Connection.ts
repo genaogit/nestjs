@@ -1,6 +1,6 @@
 import * as sql from 'mssql';
 
-export const sqlConfig: sql.config = {
+/* export const sqlConfig: sql.config = {
     user: 'developer', // Usuario de tu base de datos
     password: 'developer_pwd#2024', // Contraseña de tu base de datos
     database: 'chat_soporte',
@@ -15,8 +15,7 @@ export const sqlConfig: sql.config = {
         min: 0,
         idleTimeoutMillis: 300000,
     },
-};
-/* 
+}; */
 export const sqlConfig: sql.config = {
     user: 'db_aaabc4_enfasis_admin', // Usuario de tu base de datos
     password: 'enfasisdb2004', // Contraseña de tu base de datos
@@ -32,7 +31,7 @@ export const sqlConfig: sql.config = {
         min: 0,
         idleTimeoutMillis: 300000,
     },
-}; */
+};
 
 export async function connectToDatabase() {
     try {
