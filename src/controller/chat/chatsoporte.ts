@@ -10,7 +10,7 @@ import { Server, Socket } from 'socket.io';
 import { ChatService } from './chat.service';
 import { MessageDto } from './dto/message';
 
-@WebSocketGateway(81, {
+@WebSocketGateway({
     cors: { origin: '*' },
 })
 export class ChatSoporte
