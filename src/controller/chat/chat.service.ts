@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MessageDto } from './dto/message';
+import { MessageDto, RatingDto } from './dto/message';
 import { connectToDatabase } from 'src/db/Connection';
 import * as sql from 'mssql';
 import * as moment from 'moment';
@@ -57,6 +57,51 @@ export class ChatService {
         }));
 
         return transformedMessages;
+
+
+    }
+
+    async Rating(RatingDto: RatingDto) {
+        const pool = await connectToDatabase();
+        try {
+            const result = await pool.request()
+                .input('idUsuario', sql.Int, RatingDto.idUsuario)
+                .input('idAdmin', sql.Int, RatingDto.idAdmin)
+                .input('calificacion', sql.Int, RatingDto.calificacion)
+                .input('mensaje', sql.VarChar(255), RatingDto.mensaje)
+                .execute('InsertRating');
+
+            return {
+                status: true,
+                value: null,
+                mensajeerror: null
+            };
+
+        } catch (err) {
+            console.log(err.message)
+            return {
+                status: false,
+                value: null,
+                message: err.message
+            }
+        }
+    }
+
+    //METODO PARA LA AUTENTICACION DE LOS USUARIOS 
+    async GetRatings() {
+
+        const pool = await connectToDatabase();
+        const query = `
+           SELECT * FROM Ratings
+         
+          `;
+
+        const result = await pool.request()
+            .query(query);
+
+
+
+        return result.recordset;
 
 
     }

@@ -113,6 +113,7 @@ export class ChatSoporte
     @SubscribeMessage('leave_room')
     handleLeaveRoom(client: Socket, { room }: { room: string }) {
         client.leave(room);
+        client.to(room).emit('user_disconnected', room);
     }
 
     @SubscribeMessage('typing')

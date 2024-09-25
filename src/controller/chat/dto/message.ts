@@ -24,3 +24,27 @@ export class MessageDto {
     @IsNotEmpty()
     room: string;
 }
+
+
+export class RatingDto {
+    @ApiProperty()
+    @IsInt()
+    @IsNotEmpty()
+    idUsuario: number;
+
+    @ApiProperty()
+    @IsInt()
+    @IsNotEmpty()
+    idAdmin: number;
+
+    @ApiProperty()
+    @IsInt()
+    @IsNotEmpty()
+    calificacion: number;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    mensaje: string;
+}
+
