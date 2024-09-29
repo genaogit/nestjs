@@ -47,13 +47,12 @@ export class ChatService {
             .input('room', sql.VarChar, room)  // Parámetro de entrada
             .query(query);
 
-
         // Mapea el resultado al formato que necesitas
         const transformedMessages = result.recordset.map(message => ({
             date: moment(message.sendDate).format('hh:mm A'),  // Formateo de la hora usando moment.js
             idUser: message.idUser,
             message: message.message,  // El campo 'message' original
-            type: "text",  // Siempre será de tipo "text" en tu ejemplo
+            type: message.typeMessage == 1 ? 'text' : 'url',  // Siempre será de tipo "text" en tu ejemplo
         }));
 
         return transformedMessages;

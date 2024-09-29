@@ -81,10 +81,9 @@ export class ChatSoporte
 
     @SubscribeMessage('send_message')
     handleSendMessage(client: Socket, { room, message, idUser, type, date }: { room: string; message: string; idUser: number, type: string, date: string }) {
-        console.log(message)
         const messageDto: MessageDto = {
             idUser: idUser,
-            typeMessage: 1,
+            typeMessage: type == "url" ? 2 : 1,
             message: message,
             room: room
         };
