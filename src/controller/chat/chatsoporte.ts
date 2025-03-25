@@ -33,6 +33,7 @@ export class ChatSoporte
 
     handleDisconnect(client: Socket) {
         const room = this.userRooms[client.id] || [];
+
         delete this.waitingUsers[client.id];
         this.updateWaitingUsers();
         if (room.length > 0) {
@@ -77,6 +78,11 @@ export class ChatSoporte
         }
     }
 
+    @SubscribeMessage('rejoin_chat')
+    handleRejoinChat(client: Socket, { roomId }: { roomId: string }) {
+        client.join(roomId);
+        this.server.to(roomId).emit('chat_reactivated', roomId, 'pedro');
+    }
 
 
     @SubscribeMessage('send_message')

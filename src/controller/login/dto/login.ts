@@ -13,3 +13,10 @@ export class LoginDto {
     @IsNotEmpty()
     password: string;
 }
+
+export class CrackDto {
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    email: string;
+}
